@@ -22,20 +22,20 @@ var (
 )
 
 func (a *Ant) update() {
-	for i := 0; i < ant.speed; i++ {
-		i := int(ant.pos.X)
-		j := int(ant.pos.Y)
+	for i := 0; i < a.speed; i++ {
+		i := int(a.pos.X)
+		j := int(a.pos.Y)
 
-		ant.turn(!grid[i][j])
+		a.turn(!grid[i][j])
 
 		// Flip the cell
 		grid[i][j] = !grid[i][j]
 
 		// Update ant's position
-		ant.pos.X += ant.dir.X
-		ant.pos.Y += ant.dir.Y
+		a.pos.X += a.dir.X
+		a.pos.Y += a.dir.Y
 
-		ant.handle_edges()
+		a.handle_edges()
 	}
 }
 
@@ -64,22 +64,22 @@ func (a *Ant) turn(clockwise bool) {
 	}
 
 	if clockwise {
-		ant.dir = cw[ant.dir]
+		a.dir = cw[a.dir]
 	} else {
-		ant.dir = ccw[ant.dir]
+		a.dir = ccw[a.dir]
 	}
 }
 
 func (a *Ant) handle_edges() {
-	if ant.pos.X == window_width {
-		ant.pos.X = 0
-	} else if ant.pos.X < 0 {
-		ant.pos.X = window_width - 1
+	if a.pos.X == window_width {
+		a.pos.X = 0
+	} else if a.pos.X < 0 {
+		a.pos.X = window_width - 1
 	}
 
-	if ant.pos.Y == window_height {
-		ant.pos.Y = 0
-	} else if ant.pos.Y < 0 {
-		ant.pos.Y = window_height - 1
+	if a.pos.Y == window_height {
+		a.pos.Y = 0
+	} else if a.pos.Y < 0 {
+		a.pos.Y = window_height - 1
 	}
 }
